@@ -9,7 +9,7 @@ and eventually drop this after all usages are changed.
 import os
 from typing import List
 
-from pip._vendor import appdirs as _appdirs
+from pip._vendor import platformdirs as _appdirs
 
 
 def user_cache_dir(appname: str) -> str:

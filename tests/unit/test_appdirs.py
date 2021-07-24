@@ -4,7 +4,7 @@ import posixpath
 import sys
 
 import pretend
-from pip._vendor import appdirs as _appdirs
+from pip._vendor import platformdirs as _appdirs
 
 from pip._internal.utils import appdirs
 
