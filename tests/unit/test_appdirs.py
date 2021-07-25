@@ -29,7 +29,7 @@ def platformdirs_win32(monkeypatch):
 @pytest.fixture()
 def platformdirs_darwin(monkeypatch):
     # Monkeypatch platformdirs to pretend we're running on macOS
-    
+
     with monkeypatch.context() as m:
         m.setattr(sys, "platform", "darwin")
         m.setattr(os, "path", posixpath)
