@@ -162,8 +162,6 @@ class TestSiteConfigDirs:
             '/etc'
         ]
 
-    # XXX: domdfcoding 2021-07-25
-    @pytest.mark.xfail(reason="Used to be patched by pip in appdirs.py:250")
     def test_site_config_dirs_linux_empty(self, monkeypatch, platformdirs_linux):
         monkeypatch.setattr(os, "pathsep", ':')
         monkeypatch.setenv("XDG_CONFIG_DIRS", "")
