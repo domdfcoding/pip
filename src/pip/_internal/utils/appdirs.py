@@ -29,7 +29,11 @@ def user_config_dir(appname: str, roaming: bool = True) -> str:
 # see <https://github.com/pypa/pip/issues/1733>
 def site_config_dirs(appname: str) -> List[str]:
     dirval = _appdirs.site_config_dir(appname, appauthor=False, multipath=True)
-    if _appdirs.system not in ["win32", "darwin"]:
+    if _appdirs.system == "darwin":
+        # always look in /Library/Application Support/pip as well
+        return dirval.split(os.pathsep) + ["/Library/Application Support/pip"]
+    elif _appdirs.system == "win32":
+        return [dirval]
+    else:
         # always look in /etc directly as well
         return dirval.split(os.pathsep) + ["/etc"]
-    return [dirval]

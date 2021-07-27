@@ -135,13 +135,13 @@ class TestSiteConfigDirs:
         assert appdirs.site_config_dirs("pip") == ["C:\\ProgramData\\pip"]
         assert _get_win_folder.calls == [pretend.call("CSIDL_COMMON_APPDATA")]
 
-    # XXX: domdfcoding, 2021-07-25
-    @pytest.mark.xfail(reason="Directory changed in platformdirs")
     def test_site_config_dirs_osx(self, monkeypatch, platformdirs_darwin):
         monkeypatch.setenv("HOME", "/home/test")
 
-        assert appdirs.site_config_dirs("pip") == \
-            ["/Library/Application Support/pip"]
+        assert appdirs.site_config_dirs("pip") == [
+            "/Library/Preferences/pip",
+            "/Library/Application Support/pip"
+        ]
 
     def test_site_config_dirs_linux(self, monkeypatch, platformdirs_linux):
         monkeypatch.delenv("XDG_CONFIG_DIRS", raising=False)
