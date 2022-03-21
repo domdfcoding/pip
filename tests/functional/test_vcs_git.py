@@ -305,7 +305,7 @@ def _initialize_clonetest_server(
     repo_path.mkdir()
     script.run("git", "init", cwd=str(repo_path))
     repo_file = repo_path / "file.txt"
-    repo_file.write_text(u".")
+    repo_file.write_text(".")
     script.run("git", "add", "file.txt", cwd=str(repo_path))
     script.run("git", "commit", "-m", "initial commit", cwd=str(repo_path))
 
@@ -347,7 +347,7 @@ def test_partial_clone(script: PipTestEnvironment, tmp_path: pathlib.Path) -> No
     )
 
     # Write some additional stuff to git pull
-    repo_file.write_text(u"..")
+    repo_file.write_text("..")
     script.run("git", "commit", "-am", "second commit", cwd=str(repo_path))
 
     # Make sure git pull works - with server supporting filtering
@@ -391,7 +391,7 @@ def test_partial_clone_without_server_support(
     )
 
     # Write some additional stuff to git pull
-    repo_file.write_text(u"..")
+    repo_file.write_text("..")
     script.run("git", "commit", "-am", "second commit", cwd=str(repo_path))
 
     # Make sure git pull works - even though server doesn't support filtering
@@ -424,7 +424,7 @@ def test_clone_without_partial_clone_support(
             verbosity=0,
         )
 
-    repo_file.write_text(u"...")
+    repo_file.write_text("...")
     script.run("git", "commit", "-am", "third commit", cwd=str(repo_path))
 
     # Should work fine w/o attempting to use `--filter` args
