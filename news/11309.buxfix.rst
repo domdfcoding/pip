@@ -1,0 +1,1 @@
+Ensure files exist before calling ``os.path.samefile()``.
